@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('magic/login', 'Api\Auth\LoginController@login')->name('magic.login')->middleware(['guest', 'throttle:12,60']);
+// Route::get('magic/login', 'Api\Auth\LoginController@login')->name('magic.login')->middleware(['guest', 'throttle:12,60']);
