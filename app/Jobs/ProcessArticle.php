@@ -5,7 +5,9 @@ namespace App\Jobs;
 use Illuminate\Bus\Queueable;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Queue\SerializesModels;
+use andreskrey\Readability\Readability;
 use Illuminate\Queue\InteractsWithQueue;
+use andreskrey\Readability\Configuration;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -45,5 +47,17 @@ class ProcessArticle implements ShouldQueue
         $html = $browsershot
             ->waitUntilNetworkIdle(false) // 2 network connections, 500ms
             ->bodyHtml();
+
+        //
+
+        $configuration = (new Configuration)
+            ->setFixRelativeURLs(true)
+            ->setOriginalURL($this->url);
+
+        $readability = new Readability($configuration);
+
+        $readability->parse($html);
+
+        $content = $readability->getContent();
     }
 }
