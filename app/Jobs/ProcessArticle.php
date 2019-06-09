@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Html2Text\Html2Text;
 use Illuminate\Bus\Queueable;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Queue\SerializesModels;
@@ -59,5 +60,10 @@ class ProcessArticle implements ShouldQueue
         $readability->parse($html);
 
         $content = $readability->getContent();
+
+        //
+
+        $article = (new Html2Text($content))
+            ->getText();
     }
 }
