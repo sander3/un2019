@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Setting;
+use App\Jobs\ProcessArticle;
 use App\Http\Requests\StoreSettings;
 
 class SettingsController extends Controller
@@ -14,7 +15,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        //
+        return view('settings');
     }
 
     /**
@@ -33,6 +34,10 @@ class SettingsController extends Controller
                 'value' => $request->input('url'),
             ]
         );
+
+        ProcessArticle::dispatchNow($setting->value);
+
+        return back()->with('status', 'success');
     }
 
     /**
