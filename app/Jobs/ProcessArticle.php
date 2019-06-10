@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Illuminate\Bus\Queueable;
 use App\Pipes\FetchArticleHtml;
 use Illuminate\Pipeline\Pipeline;
+use App\Pipes\ConvertTextToSpeech;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Pipes\ConvertArticleContentToText;
@@ -43,9 +44,10 @@ class ProcessArticle implements ShouldQueue
             FetchArticleHtml::class,
             ConvertArticleHtmlToContent::class,
             ConvertArticleContentToText::class,
+            ConvertTextToSpeech::class,
         ];
 
-        $article = app(Pipeline::class)
+        app(Pipeline::class)
             ->send($this->url)
             ->through($pipes)
             ->thenReturn();

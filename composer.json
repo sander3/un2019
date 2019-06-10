@@ -12,6 +12,7 @@
         "andreskrey/readability.php": "^2.0",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
+        "google/cloud-text-to-speech": "^0.4.3",
         "guzzlehttp/guzzle": "^6.3",
         "html2text/html2text": "^4.2",
         "laravel/framework": "5.8.*",
