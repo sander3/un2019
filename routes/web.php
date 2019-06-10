@@ -13,4 +13,6 @@
 
 // Route::get('magic/login', 'Api\Auth\LoginController@login')->name('magic.login')->middleware(['guest', 'throttle:12,60']);
 
-Route::get('settings', 'SettingsController@store')->name('settings.store');
+Route::get('settings', 'SettingsController@index')->name('settings.index');
+
+Route::post('settings', 'SettingsController@store')->name('settings.store');

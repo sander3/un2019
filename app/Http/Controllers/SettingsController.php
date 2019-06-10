@@ -15,7 +15,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        //
+        return view('settings');
     }
 
     /**
@@ -36,6 +36,8 @@ class SettingsController extends Controller
         );
 
         ProcessArticle::dispatchNow($setting->value);
+
+        return back()->with('status', 'success');
     }
 
     /**
