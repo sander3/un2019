@@ -42,7 +42,7 @@ class ConvertTextToSpeech
         $response = $client->synthesizeSpeech($synthesisInputText, $voice, $audioConfig);
         $audioContent = $response->getAudioContent();
 
-        Storage::put('output.mp3', $audioContent);
+        Storage::disk('public')->put('output.mp3', $audioContent);
 
         return $next($content);
     }

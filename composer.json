@@ -19,7 +19,8 @@
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
         "soved/laravel-magic-auth": "^1.0",
-        "spatie/browsershot": "^3.30"
+        "spatie/browsershot": "^3.30",
+        "twilio/sdk": "^5.32"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

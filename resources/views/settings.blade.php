@@ -63,7 +63,7 @@
 
                 <h1>
                     📱
-                    <a href="tel:+31612345678" class="stretched-link">+31 6 12345678</a>
+                    <a href="tel:+4592453246" class="stretched-link">+4592453246</a>
                 </h1>
             </div>
         </div>
