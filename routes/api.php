@@ -17,3 +17,5 @@
 // Route::post('email', 'Auth\LinkController@sendMagicLinkEmail')->name('auth.email')->middleware(['guest', 'throttle:5,5']);
 
 // Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout')->middleware('auth');
+
+Route::post('twilio/webhook', 'TwilioWebhookController')->name('twilio.webhook');
