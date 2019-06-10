@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
-use Html2Text\Html2Text;
 use Illuminate\Bus\Queueable;
-use Spatie\Browsershot\Browsershot;
+use App\Pipes\FetchArticleHtml;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Queue\SerializesModels;
-use andreskrey\Readability\Readability;
 use Illuminate\Queue\InteractsWithQueue;
-use andreskrey\Readability\Configuration;
+use App\Pipes\ConvertArticleContentToText;
+use App\Pipes\ConvertArticleHtmlToContent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -39,31 +39,15 @@ class ProcessArticle implements ShouldQueue
      */
     public function handle()
     {
-        $browsershot = Browsershot::url($this->url);
+        $pipes = [
+            FetchArticleHtml::class,
+            ConvertArticleHtmlToContent::class,
+            ConvertArticleContentToText::class,
+        ];
 
-        if ($path = config('browsershot.include_path')) {
-            $browsershot->setIncludePath($path);
-        }
-
-        $html = $browsershot
-            ->waitUntilNetworkIdle(false) // 2 network connections, 500ms
-            ->bodyHtml();
-
-        //
-
-        $configuration = (new Configuration)
-            ->setFixRelativeURLs(true)
-            ->setOriginalURL($this->url);
-
-        $readability = new Readability($configuration);
-
-        $readability->parse($html);
-
-        $content = $readability->getContent();
-
-        //
-
-        $article = (new Html2Text($content))
-            ->getText();
+        $article = app(Pipeline::class)
+            ->send($this->url)
+            ->through($pipes)
+            ->thenReturn();
     }
 }
