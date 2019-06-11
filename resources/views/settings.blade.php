@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
+    <div class="row justify-content-center bg-primary">
+        <div class="col-md-8 my-5">
+            <h1>UN International Procurement Seminar 2019</h1>
+            <p>Built with 💙 by <u><a href="https://foryard.nl" class="text-reset">Foryard</a></u></p>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8 my-5">
             <p class="lead">Helpline settings</p>
