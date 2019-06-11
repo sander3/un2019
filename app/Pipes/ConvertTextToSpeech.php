@@ -31,7 +31,7 @@ class ConvertTextToSpeech
 
         $voice = (new VoiceSelectionParams)
             ->setLanguageCode('en-US')
-            ->setSsmlGender(SsmlVoiceGender::NEUTRAL);
+            ->setSsmlGender(SsmlVoiceGender::FEMALE);
 
         $effectsProfileId = 'handset-class-device';
 

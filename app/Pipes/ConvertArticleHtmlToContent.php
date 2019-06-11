@@ -14,7 +14,8 @@ class ConvertArticleHtmlToContent implements Pipe
     ) {
         $configuration = (new Configuration)
             ->setFixRelativeURLs(true)
-            ->setOriginalURL($content['url']);
+            ->setOriginalURL($content['url'])
+            ->setWordThreshold(600);
 
         $readability = new Readability($configuration);
 

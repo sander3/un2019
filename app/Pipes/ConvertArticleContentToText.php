@@ -11,7 +11,9 @@ class ConvertArticleContentToText
         $content,
         Closure $next
     ) {
-        $text = (new Html2Text($content))
+        $options = ['do_links' => 'none'];
+
+        $text = (new Html2Text($content, $options))
             ->getText();
 
         return $next($text);
